@@ -8,10 +8,10 @@ function AppLayout() {
   const location = useLocation();
   const isDashboard = location.pathname.startsWith('/dashboard');
 
-  const isAuthenticated = () => !!localStorage.getItem('token');
-  if (isDashboard && !isAuthenticated()) {
-    return <Navigate to="/" />;
-  }
+//   const isAuthenticated = () => !!localStorage.getItem('token');
+//   if (isDashboard && !isAuthenticated()) {
+//     return <Navigate to="/" />;
+//   }
 
   return (
     <div>

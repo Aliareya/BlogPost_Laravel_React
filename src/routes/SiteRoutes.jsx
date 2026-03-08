@@ -5,6 +5,8 @@ import About from '../site/pages/about/About'
 import Contact from '../site/pages/contact/Contact'
 import Posts from '../site/pages/posts/Posts'
 import PostDetails from '../site/pages/postdetails/PostDetails'
+import Login from '../site/pages/auth/Login'
+import Register from '../site/pages/auth/Register'
 
 function SiteRoutes() {
   return (
@@ -15,7 +17,9 @@ function SiteRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/posts/:id" element={<PostDetails />} />
-      </Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+    </Routes>
   )
 }
 
