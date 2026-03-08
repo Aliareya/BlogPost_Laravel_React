@@ -19,6 +19,8 @@ function SiteRoutes() {
         <Route path="/posts/:id" element={<PostDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        
     </Routes>
   )
 }
