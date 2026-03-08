@@ -41,78 +41,9 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Custom CSS for animations */}
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        .animate-fadeInUp {
-          animation: fadeInUp 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
-      `}</style>
-
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center cursor-pointer group">
-              <h1 className="text-2xl font-bold text-blue-600 group-hover:scale-105 transition-transform duration-300">
-                BlogHub
-              </h1>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              {['Home', 'Posts', 'About', 'Contact'].map((item) => (
-                <a 
-                  key={item} 
-                  href="#" 
-                  className={`font-medium transition-all duration-300 relative group ${
-                    item === 'About' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  {item}
-                  <span className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
-                    item === 'About' ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`} />
-                </a>
-              ))}
-              <img 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" 
-                alt="User" 
-                className="w-10 h-10 rounded-full border-2 border-gray-200 cursor-pointer hover:border-blue-500 hover:scale-110 transition-all duration-200"
-              />
-            </div>
-
-            <button className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <Icon icon="mdi:menu" className="w-6 h-6 text-gray-600" />
-            </button>
-          </div>
-        </div>
-      </nav>
 
       {/* Header Section */}
-      <header className="pt-16 pb-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center animate-fadeInUp">
+      <header className="pt-28 pb-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center animate-fadeInUp">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
           About BlogHub
         </h1>
@@ -221,57 +152,9 @@ const About = () => {
             </button>
           </div>
         </section>
+        
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-50 border-t border-gray-200 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Brand */}
-            <div className="animate-fadeInUp delay-100">
-              <h2 className="text-2xl font-bold text-blue-600 mb-4">BlogHub</h2>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                A place to share your thoughts, ideas, and stories with the world.
-              </p>
-            </div>
-
-            {/* Navigation */}
-            <div className="animate-fadeInUp delay-200">
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Navigation</h3>
-              <ul className="space-y-2">
-                {['Home', 'All Posts', 'About', 'Contact'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200 hover:translate-x-1 inline-block">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Account */}
-            <div className="animate-fadeInUp delay-300">
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Account</h3>
-              <ul className="space-y-2">
-                {['Log in', 'Sign up', 'Dashboard'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200 hover:translate-x-1 inline-block">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="border-t border-gray-200 mt-12 pt-8 text-center animate-fadeIn delay-400">
-            <p className="text-gray-500 text-sm">
-              © 2026 BlogHub. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

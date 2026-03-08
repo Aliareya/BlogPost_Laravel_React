@@ -1,12 +1,14 @@
 import React from 'react'
 import SiteRoutes from '../../routes/SiteRoutes'
+import Header from './Header'
+import Footer from './Footer'
 
 function SiteLayout() {
   return (
     <div className='w-full h-full'>
-        {/* <div>Header</div> */}
-        <div><SiteRoutes /></div>
-        {/* <div>Footer</div> */}
+        <Header/>
+        <SiteRoutes />
+        <Footer/>
     </div>
   )
 }

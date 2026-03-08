@@ -63,43 +63,13 @@ const Posts = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex-shrink-0 flex items-center cursor-pointer">
-              <h1 className="text-2xl font-bold text-blue-600">BlogHub</h1>
-            </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Home</a>
-              <a href="#" className="text-gray-900 font-medium">Posts</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">About</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Contact</a>
-              <img 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" 
-                alt="User" 
-                className="w-10 h-10 rounded-full border-2 border-gray-200 cursor-pointer hover:border-blue-500 transition-colors"
-              />
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center">
-              <button className="text-gray-600 hover:text-gray-900 focus:outline-none">
-                <Icon icon="mdi:menu" className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="pt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Explore Our Articles</h1>
+          <h1 className="text-4xl text-center font-bold text-gray-900 mb-8">Explore Our Articles</h1>
           
           {/* Search Bar */}
           <div className="relative mb-8">
@@ -205,48 +175,6 @@ const Posts = () => {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Brand */}
-            <div>
-              <h2 className="text-2xl font-bold text-blue-600 mb-4">BlogHub</h2>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                A place to share your thoughts, ideas, and stories with the world.
-              </p>
-            </div>
-
-            {/* Navigation */}
-            <div>
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Navigation</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">Home</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">All Posts</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">About</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">Contact</a></li>
-              </ul>
-            </div>
-
-            {/* Account */}
-            <div>
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Account</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">Log in</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">Sign up</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors">Dashboard</a></li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="border-t border-gray-200 mt-12 pt-8 text-center">
-            <p className="text-gray-500 text-sm">
-              © 2026 BlogHub. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

@@ -93,35 +93,10 @@ const Login = () => {
         .delay-300 { animation-delay: 0.3s; }
       `}</style>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center cursor-pointer group">
-              <h1 className="text-2xl font-bold text-blue-600 group-hover:scale-105 transition-transform duration-300">
-                BlogHub
-              </h1>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Home</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Posts</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">About</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Contact</a>
-              <a href="#" className="px-5 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 hover:shadow-lg">
-                Get Started
-              </a>
-            </div>
 
-            <button className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <Icon icon="mdi:menu" className="w-6 h-6 text-gray-600" />
-            </button>
-          </div>
-        </div>
-      </nav>
 
       {/* Main Content */}
-      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+      <div className="min-h-[calc(100vh-4rem)] pt-28 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl w-full grid lg:grid-cols-2 gap-12 items-center">
           
           {/* Left Side - Illustration/Info */}
@@ -319,27 +294,7 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2">
-              <h2 className="text-xl font-bold text-blue-600">BlogHub</h2>
-              <span className="text-gray-400">|</span>
-              <p className="text-sm text-gray-600">Share your story with the world</p>
-            </div>
-            <div className="flex space-x-6 text-sm text-gray-600">
-              <a href="#" className="hover:text-blue-600 transition-colors">Privacy</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Terms</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Cookies</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Help</a>
-            </div>
-          </div>
-          <div className="mt-4 text-center text-sm text-gray-500">
-            © 2026 BlogHub. All rights reserved.
-          </div>
-        </div>
-      </footer>
+
     </div>
   );
 };

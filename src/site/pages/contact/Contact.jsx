@@ -116,47 +116,10 @@ const Contact = () => {
       `}</style>
 
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center cursor-pointer group">
-              <h1 className="text-2xl font-bold text-blue-600 group-hover:scale-105 transition-transform duration-300">
-                BlogHub
-              </h1>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              {['Home', 'Posts', 'About', 'Contact'].map((item, index) => (
-                <a 
-                  key={item} 
-                  href="#" 
-                  className={`font-medium transition-all duration-300 relative group ${
-                    item === 'Contact' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  {item}
-                  <span className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
-                    item === 'Contact' ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`} />
-                </a>
-              ))}
-              <img 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" 
-                alt="User" 
-                className="w-10 h-10 rounded-full border-2 border-gray-200 cursor-pointer hover:border-blue-500 hover:scale-110 transition-all duration-200"
-              />
-            </div>
-
-            <button className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <Icon icon="mdi:menu" className="w-6 h-6 text-gray-600" />
-            </button>
-          </div>
-        </div>
-      </nav>
+  
 
       {/* Header Section */}
-      <div className="pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-center animate-fadeInUp">
+      <div className="pt-28 pb-12 px-4 sm:px-6 lg:px-8 text-center animate-fadeInUp">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
           Get in Touch
         </h1>
@@ -290,74 +253,7 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Map Section */}
-        <div className="mt-12 animate-fadeInUp delay-300">
-          <div className="bg-gray-200 rounded-2xl h-96 overflow-hidden relative group">
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-              <div className="text-center">
-                <Icon icon="mdi:map" className="w-16 h-16 text-gray-400 mx-auto mb-4 animate-pulse" />
-                <p className="text-gray-500 font-medium">Interactive Map Loading...</p>
-              </div>
-            </div>
-            {/* Map Placeholder Overlay */}
-            <div className="absolute top-4 left-4 bg-white rounded-xl shadow-lg p-4 max-w-xs animate-slideInLeft">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Icon icon="mdi:map-marker" className="w-5 h-5 text-blue-600" />
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900">BlogHub HQ</p>
-                  <p className="text-sm text-gray-600">123 Blog Street</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="animate-fadeInUp delay-100">
-              <h2 className="text-2xl font-bold text-blue-600 mb-4">BlogHub</h2>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                A place to share your thoughts, ideas, and stories with the world.
-              </p>
-            </div>
-            
-            <div className="animate-fadeInUp delay-200">
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Navigation</h3>
-              <ul className="space-y-2">
-                {['Home', 'All Posts', 'About', 'Contact'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200 hover:translate-x-1 inline-block">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="animate-fadeInUp delay-300">
-              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Account</h3>
-              <ul className="space-y-2">
-                {['Log in', 'Sign up', 'Dashboard'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200 hover:translate-x-1 inline-block">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-200 mt-12 pt-8 text-center animate-fadeIn delay-400">
-            <p className="text-gray-500 text-sm">© 2026 BlogHub. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

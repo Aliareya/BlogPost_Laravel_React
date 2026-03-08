@@ -98,62 +98,8 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-      {/* Custom Animations */}
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideInLeft {
-          from { opacity: 0; transform: translateX(-50px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-          from { opacity: 0; transform: translateX(50px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
-        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
-        .animate-slideInLeft { animation: slideInLeft 0.8s ease-out forwards; }
-        .animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-      `}</style>
-
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center cursor-pointer group">
-              <h1 className="text-2xl font-bold text-blue-600 group-hover:scale-105 transition-transform duration-300">
-                BlogHub
-              </h1>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Home</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Posts</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">About</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Contact</a>
-              <a href="#" className="px-5 py-2.5 text-gray-700 font-medium hover:text-blue-600 transition-colors">
-                Log in
-              </a>
-            </div>
-
-            <button className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <Icon icon="mdi:menu" className="w-6 h-6 text-gray-600" />
-            </button>
-          </div>
-        </div>
-      </nav>
-
       {/* Main Content */}
-      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+      <div className=" flex items-center justify-center pt-28 px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl w-full grid lg:grid-cols-2 gap-12 items-center">
           
           {/* Left Side - Illustration/Info */}
@@ -411,26 +357,6 @@ const Register = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2">
-              <h2 className="text-xl font-bold text-blue-600">BlogHub</h2>
-              <span className="text-gray-400">|</span>
-              <p className="text-sm text-gray-600">Share your story with the world</p>
-            </div>
-            <div className="flex space-x-6 text-sm text-gray-600">
-              <a href="#" className="hover:text-blue-600 transition-colors">Privacy</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Terms</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Cookies</a>
-            </div>
-          </div>
-          <div className="mt-4 text-center text-sm text-gray-500">
-            © 2026 BlogHub. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

@@ -1,62 +1,11 @@
 // BlogHub.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Icon } from '@iconify/react';
+import Header from '../../layouts/Header';
 
-// Custom animation styles (add to your global CSS or use styled-components)
-const customAnimations = `
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-.animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
-.animate-float { animation: float 6s ease-in-out infinite; }
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-`;
 
 const Home = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
 
-  const toggleAccountMenu = () => {
-    setIsAccountMenuOpen(!isAccountMenuOpen);
-  }
-
-  // Handle scroll effects
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      // Section tracking
-      const sections = ['home', 'features', 'stats', 'posts', 'cta'];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close mobile menu when clicking a link
-  const handleNavClick = (section) => {
-    setIsMenuOpen(false);
-    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   // Mock data
   const features = [
@@ -104,123 +53,11 @@ const Home = () => {
   ];
 
 
-  // for header
-  const menupopup = useRef(null);
-   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menupopup.current && !menupopup.current.contains(event.target)) {
-        setIsAccountMenuOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
 
 
   return (
     <>
-      <style>{customAnimations}</style>
-
-      {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-        }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 md:h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => handleNavClick('home')}>
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center transform hover:scale-105 transition-transform">
-                <Icon icon="mdi:blog" className="text-white text-xl" />
-              </div>
-              <span className={`text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 ${scrolled ? '' : 'text-white'
-                }`}>
-                BlogHub
-              </span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {['home', 'features', 'stats', 'posts', 'cta'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => handleNavClick(item)}
-                  className={`capitalize font-medium transition-all duration-300 relative py-2 ${activeSection === item
-                      ? 'text-blue-600'
-                      : scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/90 hover:text-white'
-                    }`}
-                >
-                  {item}
-                  {activeSection === item && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full" />
-                  )}
-                </button>
-              ))}
-
-              <button className="ml-4 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5 transition-all duration-300">
-                Get Started
-              </button>
-
-              <div ref={menupopup} onClick={toggleAccountMenu} className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white cursor-pointer hover:scale-105 transition-transform" />
-              {isAccountMenuOpen && (
-                <div className="absolute top-14 right-10 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50">
-                  <div className="py-2 px-4 font-bold border-b">My Account</div>
-                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Dashboard</button>
-                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Profile</button>
-                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Admin Panel</button>
-                  <button className="block w-full text-left px-4 py-2 bg-[#c94b4b24] hover:bg-[#c94b4b24]">Log out</button>
-                </div>
-              )}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="flex items-center gap-3 md:hidden">
-              <div onClick={toggleAccountMenu} className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white cursor-pointer hover:scale-105 transition-transform" />
-               {isAccountMenuOpen && (
-                <div className="absolute top-12 right-20 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50">
-                  <div className="py-2 px-4 font-bold border-b">My Account</div>
-                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Dashboard</button>
-                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Profile</button>
-                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Admin Panel</button>
-                  <button className="block w-full text-left px-4 py-2 bg-[#c94b4b24] hover:bg-[#c94b4b24]">Log out</button>
-                </div>
-              )}
-              <button
-                className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                <Icon
-                  icon={isMenuOpen ? "mdi:close" : "mdi:menu"}
-                  className={`text-2xl ${scrolled ? 'text-gray-800' : 'text-white'}`}
-                />
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}>
-          <div className="px-4 pt-2 pb-6 space-y-3 bg-white border-t shadow-lg">
-            {['home', 'features', 'stats', 'posts', 'cta'].map((item) => (
-              <button
-                key={item}
-                onClick={() => handleNavClick(item)}
-                className={`block w-full text-left py-3 px-4 rounded-lg capitalize font-medium transition-colors ${activeSection === item
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-              >
-                {item}
-              </button>
-            ))}
-            <button className="w-full mt-4 px-5 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl font-medium">
-              Get Started
-            </button>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-cyan-600 pt-20">
@@ -417,61 +254,7 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            <div>
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center">
-                  <Icon icon="mdi:blog" className="text-white text-xl" />
-                </div>
-                <span className="text-xl font-bold text-white">BlogHub</span>
-              </div>
-              <p className="mb-6 leading-relaxed">
-                Empowering creators to share their voice with beautifully designed, easy-to-use blogging tools.
-              </p>
-              <div className="flex space-x-4">
-                {['twitter', 'github', 'linkedin', 'instagram'].map(social => (
-                  <button
-                    key={social}
-                    className="w-10 h-10 rounded-full bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors"
-                  >
-                    <Icon icon={`mdi:${social}`} className="text-white" />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {[
-              { title: 'Product', links: ['Features', 'Pricing', 'Integrations', 'Changelog'] },
-              { title: 'Resources', links: ['Documentation', 'Tutorials', 'Blog', 'Community'] },
-              { title: 'Company', links: ['About', 'Careers', 'Contact', 'Privacy'] }
-            ].map(column => (
-              <div key={column.title}>
-                <h4 className="text-white font-semibold mb-4">{column.title}</h4>
-                <ul className="space-y-3">
-                  {column.links.map(link => (
-                    <li key={link}>
-                      <button className="hover:text-white transition-colors">{link}</button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm mb-4 md:mb-0">
-              © {new Date().getFullYear()} BlogHub. All rights reserved.
-            </p>
-            <div className="flex space-x-6 text-sm">
-              <button className="hover:text-white transition-colors">Terms</button>
-              <button className="hover:text-white transition-colors">Privacy</button>
-              <button className="hover:text-white transition-colors">Cookies</button>
-            </div>
-          </div>
-        </div>
-      </footer>
+      
     </>
   );
 };
