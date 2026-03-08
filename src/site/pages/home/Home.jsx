@@ -1,5 +1,5 @@
 // BlogHub.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Icon } from '@iconify/react';
 
 // Custom animation styles (add to your global CSS or use styled-components)
@@ -23,12 +23,17 @@ const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+
+  const toggleAccountMenu = () => {
+    setIsAccountMenuOpen(!isAccountMenuOpen);
+  }
 
   // Handle scroll effects
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      
+
       // Section tracking
       const sections = ['home', 'features', 'stats', 'posts', 'cta'];
       for (const section of sections) {
@@ -42,7 +47,7 @@ const Home = () => {
         }
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -98,14 +103,28 @@ const Home = () => {
     }
   ];
 
+
+  // for header
+  const menupopup = useRef(null);
+   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menupopup.current && !menupopup.current.contains(event.target)) {
+        setIsAccountMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
+
   return (
     <>
       <style>{customAnimations}</style>
-      
+
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-      }`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
@@ -113,9 +132,8 @@ const Home = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center transform hover:scale-105 transition-transform">
                 <Icon icon="mdi:blog" className="text-white text-xl" />
               </div>
-              <span className={`text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 ${
-                scrolled ? '' : 'text-white'
-              }`}>
+              <span className={`text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 ${scrolled ? '' : 'text-white'
+                }`}>
                 BlogHub
               </span>
             </div>
@@ -126,11 +144,10 @@ const Home = () => {
                 <button
                   key={item}
                   onClick={() => handleNavClick(item)}
-                  className={`capitalize font-medium transition-all duration-300 relative py-2 ${
-                    activeSection === item
+                  className={`capitalize font-medium transition-all duration-300 relative py-2 ${activeSection === item
                       ? 'text-blue-600'
                       : scrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/90 hover:text-white'
-                  }`}
+                    }`}
                 >
                   {item}
                   {activeSection === item && (
@@ -138,42 +155,62 @@ const Home = () => {
                   )}
                 </button>
               ))}
-              
+
               <button className="ml-4 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5 transition-all duration-300">
                 Get Started
               </button>
-              
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white cursor-pointer hover:scale-105 transition-transform" />
+
+              <div ref={menupopup} onClick={toggleAccountMenu} className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white cursor-pointer hover:scale-105 transition-transform" />
+              {isAccountMenuOpen && (
+                <div className="absolute top-14 right-10 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50">
+                  <div className="py-2 px-4 font-bold border-b">My Account</div>
+                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Dashboard</button>
+                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Profile</button>
+                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Admin Panel</button>
+                  <button className="block w-full text-left px-4 py-2 bg-[#c94b4b24] hover:bg-[#c94b4b24]">Log out</button>
+                </div>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <Icon 
-                icon={isMenuOpen ? "mdi:close" : "mdi:menu"} 
-                className={`text-2xl ${scrolled ? 'text-gray-800' : 'text-white'}`} 
-              />
-            </button>
+            <div className="flex items-center gap-3 md:hidden">
+              <div onClick={toggleAccountMenu} className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white cursor-pointer hover:scale-105 transition-transform" />
+               {isAccountMenuOpen && (
+                <div className="absolute top-12 right-20 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50">
+                  <div className="py-2 px-4 font-bold border-b">My Account</div>
+                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Dashboard</button>
+                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Profile</button>
+                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Admin Panel</button>
+                  <button className="block w-full text-left px-4 py-2 bg-[#c94b4b24] hover:bg-[#c94b4b24]">Log out</button>
+                </div>
+              )}
+              <button
+                className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                <Icon
+                  icon={isMenuOpen ? "mdi:close" : "mdi:menu"}
+                  className={`text-2xl ${scrolled ? 'text-gray-800' : 'text-white'}`}
+                />
+              </button>
+            </div>
+
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}>
           <div className="px-4 pt-2 pb-6 space-y-3 bg-white border-t shadow-lg">
             {['home', 'features', 'stats', 'posts', 'cta'].map((item) => (
               <button
                 key={item}
                 onClick={() => handleNavClick(item)}
-                className={`block w-full text-left py-3 px-4 rounded-lg capitalize font-medium transition-colors ${
-                  activeSection === item
+                className={`block w-full text-left py-3 px-4 rounded-lg capitalize font-medium transition-colors ${activeSection === item
                     ? 'bg-blue-50 text-blue-600'
                     : 'text-gray-700 hover:bg-gray-50'
-                }`}
+                  }`}
               >
                 {item}
               </button>
@@ -193,22 +230,22 @@ const Home = () => {
           <div className="absolute -bottom-32 -left-20 w-64 h-64 bg-white/5 rounded-full animate-float" style={{ animationDelay: '2s' }} />
           <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-cyan-300/20 rounded-full animate-float" style={{ animationDelay: '4s' }} />
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 md:py-32">
           <div className="animate-fadeInUp">
             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-8 border border-white/20">
               <Icon icon="mdi:sparkles" className="text-yellow-300 mr-2" />
               <span className="text-white/90 text-sm font-medium">New: AI Writing Assistant</span>
             </div>
-            
+
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Share Your <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-200">Story</span> with the World
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
               Create beautiful blogs, connect with readers, and grow your audience with the most intuitive publishing platform built for creators.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fadeInUp delay-200">
               <button className="px-8 py-4 bg-white text-blue-600 rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-white/20 transform hover:-translate-y-1 transition-all duration-300">
                 Start Writing Free
@@ -217,10 +254,10 @@ const Home = () => {
                 <Icon icon="mdi:play-circle" className="inline mr-2" /> Watch Demo
               </button>
             </div>
-            
+
             <div className="flex items-center justify-center space-x-8 text-white/80 animate-fadeInUp delay-300">
               <div className="flex -space-x-3">
-                {[1,2,3,4].map(i => (
+                {[1, 2, 3, 4].map(i => (
                   <div key={i} className="w-10 h-10 rounded-full border-2 border-blue-600 bg-gradient-to-br from-purple-400 to-pink-500" />
                 ))}
               </div>
@@ -228,7 +265,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <Icon icon="mdi:chevron-down" className="text-white/70 text-3xl" />
@@ -249,10 +286,10 @@ const Home = () => {
               Powerful tools designed to help you focus on what matters most: your content.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <div 
+              <div
                 key={feature.title}
                 className="group p-8 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300 cursor-pointer animate-fadeInUp"
                 style={{ animationDelay: `${index * 100}ms` }}
@@ -273,7 +310,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div 
+              <div
                 key={stat.label}
                 className="text-center p-6 animate-fadeInUp"
                 style={{ animationDelay: `${index * 100}ms` }}
@@ -302,17 +339,17 @@ const Home = () => {
               Discover trending topics and expert insights from creators around the world.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post, index) => (
-              <article 
+              <article
                 key={post.id}
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer animate-fadeInUp"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={post.image} 
+                  <img
+                    src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -340,7 +377,7 @@ const Home = () => {
               </article>
             ))}
           </div>
-          
+
           <div className="text-center mt-12 animate-fadeInUp delay-300">
             <button className="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:border-blue-500 hover:text-blue-600 transition-all duration-300">
               View All Articles
@@ -355,7 +392,7 @@ const Home = () => {
           <div className="absolute top-10 right-10 w-64 h-64 bg-white/10 rounded-full animate-float" />
           <div className="absolute bottom-10 left-10 w-48 h-48 bg-cyan-300/20 rounded-full animate-float" style={{ animationDelay: '3s' }} />
         </div>
-        
+
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fadeInUp">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -395,7 +432,7 @@ const Home = () => {
               </p>
               <div className="flex space-x-4">
                 {['twitter', 'github', 'linkedin', 'instagram'].map(social => (
-                  <button 
+                  <button
                     key={social}
                     className="w-10 h-10 rounded-full bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors"
                   >
@@ -404,7 +441,7 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            
+
             {[
               { title: 'Product', links: ['Features', 'Pricing', 'Integrations', 'Changelog'] },
               { title: 'Resources', links: ['Documentation', 'Tutorials', 'Blog', 'Community'] },
@@ -422,7 +459,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm mb-4 md:mb-0">
               © {new Date().getFullYear()} BlogHub. All rights reserved.

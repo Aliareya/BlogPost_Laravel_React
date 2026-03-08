@@ -1,11 +1,9 @@
 import React from 'react';
-import SiteRoute from './routes/SiteRoute';
+import AppRoute from './routes/AppRoute';
 
 function App() {
   return (
-    <div className='w-full h-full'>
-      <SiteRoute />
-    </div>
+    <AppRoute/>
   )
 }
 
