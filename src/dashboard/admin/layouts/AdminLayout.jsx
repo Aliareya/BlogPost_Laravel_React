@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import AdminRoutes from '../../../routes/AdminRoutes';
 
 function AdminLayout() {
   return (
-    <div>AdminLayout</div>
+    <div>
+      <AdminRoutes/>
+    </div>
   )
 }
 
