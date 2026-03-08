@@ -7,7 +7,7 @@ import AdminLayout from '../dashboard/admin/layouts/AdminLayout';
 
 function AppLayout() {
   const location = useLocation();
-  const is_userDashboard = location.pathname.startsWith('/my-dashboard')
+  const is_userDashboard = location.pathname.startsWith('/dashboard')
   const is_admin = location.pathname.startsWith('/admin');
 
   //   const isAuthenticated = () => !!localStorage.getItem('token');
