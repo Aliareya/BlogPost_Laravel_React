@@ -1,10 +1,11 @@
 // BlogHub.jsx
-import React, { useState, useEffect, useRef } from 'react';
 import { Icon } from '@iconify/react';
-import Header from '../../layouts/Header';
+import { useAuth } from '../../../context/AuthContext';
 
 
 const Home = () => {
+  const {getUser , getToken} = useAuth();
+  console.log(getUser())
 
 
   // Mock data

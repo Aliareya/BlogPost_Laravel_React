@@ -22,7 +22,6 @@ const Register = () => {
   });
 
  const onSubmit = async (data) => {
-  console.log("Form Data:", data);
   try {
     await axios.post(
       "http://127.0.0.1:8000/api/register",
