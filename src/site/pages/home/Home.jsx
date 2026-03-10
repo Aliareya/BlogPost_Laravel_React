@@ -5,7 +5,7 @@ import { useAuth } from '../../../context/AuthContext';
 
 const Home = () => {
   const {getUser , getToken} = useAuth();
-  console.log(getUser())
+  // console.log(getUser())
 
 
   // Mock data

@@ -26,7 +26,7 @@ const Login = () => {
           withCredentials: true,
       }).then((response) => {
         const { user , token } = response.data;
-        setToken(access_token);
+        setToken(token);
         setUserDate(user);
       });
 

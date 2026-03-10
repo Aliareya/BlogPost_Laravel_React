@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import SiteLayout from '../site/layouts/SiteLayout';
-import UserDashboardLayout from '../dashboard/user/layouts/UserDashboardLayout';
-import AdminLayout from '../dashboard/admin/layouts/AdminLayout';
-import { useAuth } from '../context/AuthContext';
-
+import React, { useEffect, useState } from "react";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
+import SiteLayout from "../site/layouts/SiteLayout";
+import UserDashboardLayout from "../dashboard/user/layouts/UserDashboardLayout";
+import AdminLayout from "../dashboard/admin/layouts/AdminLayout";
+import { useAuth } from "../context/AuthContext";
 
 function AppLayout() {
   const location = useLocation();
-  const {fetchUserData} = useAuth();
-  const is_userDashboard = location.pathname.startsWith('/dashboard')
-  const is_admin = location.pathname.startsWith('/admin');
-  const [is_check , setIsCheck] = useState(true);
+  const { fetchUserData, checkLogin, loading } = useAuth();
+  const is_userDashboard = location.pathname.startsWith("/dashboard");
+  const is_admin = location.pathname.startsWith("/admin");
 
-  //   const isAuthenticated = () => !!localStorage.getItem('token');
-  //   if (isDashboard && !isAuthenticated()) {
-  //     return <Navigate to="/" />;
-  //   }
 
-  useEffect(()=>{
-    setTimeout(() => {
-      fetchUserData();
+  useEffect(() => {
+    fetchUserData();
+    if (!checkLogin()) {
+      console.log("User not logged in, redirecting to login page.");
+    }
+    
+  }, []);
 
-      setIsCheck(false);
-    }, 2000);
 
-  },[]);
 
   return (
     <div>
-      {
-        is_check ? <LoadingPage/> :
-
-        is_userDashboard ? <UserDashboardLayout /> :
-        is_admin ? <AdminLayout /> :<SiteLayout />
-      }
+      {loading ? (
+        <LoadingPage />
+      ) : is_userDashboard ? (
+        <UserDashboardLayout />
+      ) : is_admin ? (
+        <AdminLayout />
+      ) : (
+        <SiteLayout />
+      )}
     </div>
+
+
   );
 }
 
@@ -55,6 +55,7 @@ const LoadingPage = () => {
     </div>
   );
 };
+
 
 
 export default AppLayout;

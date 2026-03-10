@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const {user , checkLogin , getUserDate} = useAuth();
+  console.log("Header :" , user);
 
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
 
@@ -68,7 +71,7 @@ function Header() {
               </button>
             ))}
 
-            {!IS_LOGIN && (
+            {!checkLogin || !user && (
               <div className="flex gap-2">
                 <button onClick={()=>handleNavClick('Login')} className=" px-5 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5 transition-all duration-300">
                   Login
@@ -80,14 +83,14 @@ function Header() {
             )}
 
           </div>
-            {IS_LOGIN && (
+            {checkLogin && (
               <div className="flex items-center gap-3 relative">
-                <span>Alireza</span>
+                <span>{user?.name}</span>
                 <div
                   ref={menupopup}
                   onClick={toggleAccountMenu}
                   className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white cursor-pointer hover:scale-105 transition-transform"
-                />
+                ></div>
               </div>
             )}
             {isAccountMenuOpen && (
