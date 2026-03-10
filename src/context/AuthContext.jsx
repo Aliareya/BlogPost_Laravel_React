@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext , useContext, useState} from "react";
 
 const AuthContext = createContext();
@@ -14,8 +15,16 @@ export const removeToken = () => {
   localStorage.removeItem("authToken");
 };
 
-const is_logined = () => {
-   return !!getToken();
+const fetchUserData = async () => {
+   try {
+      const response = await axios.get('http://localhost:8000/api/user',{
+         withCredentials: true,
+      })
+      console.log('User data fetched successfully:', response.data);
+   } catch (error) {
+      console.error("Error fetching user data:", error);
+      return null;
+   }
 }
 
 export const AuthProvider = ({ children }) => {
@@ -30,7 +39,7 @@ export const AuthProvider = ({ children }) => {
    }
 
    return (
-   <AuthContext.Provider value={{setUserDate , getUser , setToken , getToken , removeToken}}>
+   <AuthContext.Provider value={{setUserDate , getUser ,fetchUserData, setToken , getToken , removeToken}}>
       {children}
    </AuthContext.Provider>
 );

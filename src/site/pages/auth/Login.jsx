@@ -22,8 +22,10 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try{
-      await axios.post('http://127.0.0.1:8000/api/login', data).then((response) => {
-        const {access_token , user } = response.data;
+      await axios.post('http://localhost:8000/api/login', data ,{
+          withCredentials: true,
+      }).then((response) => {
+        const { user , token } = response.data;
         setToken(access_token);
         setUserDate(user);
       });
