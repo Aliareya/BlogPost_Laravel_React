@@ -1,12 +1,14 @@
 import React from 'react'
 import SiteRoutes from '../../routes/siteRoutes'
+import SiteHeader from '../site/layout/SiteHeader'
+import SiteFooter from '../site/layout/SiteFooter'
 
 function SiteLayout() {
   return (
     <div>
-        <header>Header</header>
+        <SiteHeader/>
         <SiteRoutes/>
-        <footer>fooetr</footer>
+        <SiteFooter/>
     </div>
   )
 }
