@@ -1,18 +1,9 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import AppLayout from "./layouts/AppLayout";
-import Toast from "./components/popup/Toast";
-import { AuthProvider } from "./context/AuthContext";
+import React from 'react'
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <AppLayout />
-      </AuthProvider>
-      <Toast />
-    </BrowserRouter>
-  );
+    <div>App</div>
+  )
 }
 
-export default App;
+export default App
