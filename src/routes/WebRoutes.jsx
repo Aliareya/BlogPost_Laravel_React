@@ -5,8 +5,8 @@ import {Posts} from '../site/pages/Posts'
 import About from '../site/pages/About'
 import Contact from '../site/pages/Contact'
 import SinglePost from '../site/pages/SinglePost'
-import Signup from '../auth/Signup'
-import Login from '../auth/login'
+import Signup from '../auth/Signup';
+import {Login} from "../auth/Login"
 
 function WebRoutes() {
   return (

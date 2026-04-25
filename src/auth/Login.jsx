@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import useAuthStore from "../store/AuthStore";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -125,4 +125,3 @@ const Login = () => {
   );
 };
 
-export default Login;
