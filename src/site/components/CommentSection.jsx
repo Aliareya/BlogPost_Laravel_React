@@ -5,9 +5,11 @@ import CommentCart from "./card/CommentCart";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../config/Firebase";
 import { toast } from "react-toastify";
+import useAuthStore from "../../store/AuthStore";
 
 const CommentsSection = ({ postId , post_name }) => {
   const { register, handleSubmit, reset } = useForm();
+  const user = useAuthStore((state) => state.user);
 
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -49,10 +51,10 @@ const CommentsSection = ({ postId , post_name }) => {
 
     try {
       const res = await axios.post(
-        "https://monograph.app.n8n.cloud/webhook-test/comments",
+        "https://areyatest.app.n8n.cloud/webhook/comment",
         {
-          name: data.name,
-          message: data.message,
+          user_name: data.name,
+          user_comment: data.message,
           post_id : postId,
           post_name : post_name,
 
@@ -104,7 +106,7 @@ const CommentsSection = ({ postId , post_name }) => {
       {/* AI TYPING INDICATOR */}
       {sending && (
         <p className="text-sm text-gray-500 mb-3 animate-pulse">
-          AI is replying...
+          Checking your comment....
         </p>
       )}
 

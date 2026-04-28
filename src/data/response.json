@@ -1,0 +1,30 @@
+[
+  {
+    "category": "positive",
+    "comment": "Great article! I learned a lot from this post. Keep posting helpful content."
+  },
+  {
+    "category": "negative",
+    "comment": "This article is confusing and does not explain the topic clearly."
+  },
+  {
+    "category": "question",
+    "comment": "Can you explain how this works with a real example?"
+  },
+  {
+    "category": "suggestion",
+    "comment": "It would be better if you add code examples and screenshots."
+  },
+  {
+    "category": "request",
+    "comment": "Please create a full tutorial about this topic."
+  },
+  {
+    "category": "insult",
+    "comment": "This content is useless and written very poorly."
+  },
+  {
+    "category": "spam",
+    "comment": "Visit my website now and earn money fast!!! www.fake-link.com"
+  }
+]
